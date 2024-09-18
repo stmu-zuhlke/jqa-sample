@@ -1,0 +1,53 @@
+<jqassistant-rules xmlns="http://schema.jqassistant.org/rule/v2.2"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://schema.jqassistant.org/rule/v2.2 https://jqassistant.github.io/jqassistant/current/schema/jqassistant-rule-v2.2.xsd">
+
+    <group id="commons">
+        <includeConcept refId="commons:*"/>
+    </group>
+
+    <concept id="commons:corePackage">
+        <description>Marks core package types</description>
+        <cypher><![CDATA[
+            MATCH
+                (t:Type)
+            WHERE
+                t.fqn STARTS WITH "com.stmu.jqasample.core"
+            SET
+                t:Core
+            RETURN
+                t
+        ]]>
+        </cypher>
+    </concept>
+
+    <concept id="commons:infraPackage">
+        <description>Marks infra package types</description>
+        <cypher><![CDATA[
+            MATCH
+                (t:Type)
+            WHERE
+                t.fqn STARTS WITH "com.stmu.jqasample.infra"
+            SET
+                t:Infra
+            RETURN
+                t
+        ]]>
+        </cypher>
+    </concept>
+
+    <concept id="commons:ConnectGitFilesAndTypes">
+        <description>Create a CONTAINS connection between .java Files and the contained Types`</description>
+        <cypher><![CDATA[
+        MATCH
+            (gitFile:Git:File), (type:Type:File)
+        WHERE
+            gitFile.relativePath =~ '.*' + replace(type.fileName,'.class','.java')
+        CREATE
+            (gitFile)-[:CONTAINS]->(type)
+        RETURN
+            gitFile.relativePath, type.fileName
+    ]]></cypher>
+    </concept>
+
+</jqassistant-rules>

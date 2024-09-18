@@ -1,0 +1,12 @@
+ifndef::imagesdir[:imagesdir: ../images]
+
+[[section-design-decisions]]
+== Architecture Decisions
+
+:leveloffset: 2
+include::jQAssistant:Rules[concepts="adr:constraintReport"]
+:leveloffset: 0
+
+// This uses a custom inclusion processor located in extensions/globInclude.rb
+// which needs to be registered before parsing
+include::../adr/*.adoc[leveloffset=+2]

@@ -1,0 +1,6 @@
+spring:
+  application:
+    name : jqa-sample
+
+env:
+  runtime: ${RUNTIME:mock}

@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "env.runtime",
+      "type": "java.lang.String",
+      "description": "Defines the app runtime. Possible values are mock and mem."
+  }
+] }

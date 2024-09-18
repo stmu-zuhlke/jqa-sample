@@ -1,0 +1,13 @@
+jqassistant:
+  plugins:
+    - group-id: de.kontext-e.jqassistant.plugin
+      artifact-id: jqassistant.plugin.git
+      version: ${jqassistant.git-plugin.version}
+  maven:
+    reuse-store: true
+  scan:
+    include:
+      files:
+        - .git
+        - src/docs/adr
+        - jqassistant

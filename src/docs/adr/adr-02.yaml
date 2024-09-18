@@ -1,0 +1,11 @@
+id: adr-02
+title: My second ADR
+status: accepted
+last-change: 08.10.2024
+context: >
+  This is yet another ADR
+  let's see if this works
+decision: >
+  We decided to be great
+  and even better
+consequences: None

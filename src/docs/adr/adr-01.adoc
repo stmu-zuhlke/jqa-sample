@@ -1,0 +1,13 @@
+= My first ADR
+
+[,yaml]
+----
+include::adr-01.yaml[]
+----
+
+include::jQAssistant:Summary[constraints="adr-01*"]
+
+:leveloffset: 4
+include::jQAssistant:Rules[constraints="adr-01*"]
+
+:leveloffset: 0

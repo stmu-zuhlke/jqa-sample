@@ -1,0 +1,13 @@
+= My second ADR
+
+[,yaml]
+----
+include::adr-02.yaml[]
+----
+
+include::jQAssistant:Summary[constraints="adr-02*"]
+
+:leveloffset: 4
+include::jQAssistant:Rules[constraints="adr-02*"]
+
+:leveloffset: 0

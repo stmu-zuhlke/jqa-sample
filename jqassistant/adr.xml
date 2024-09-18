@@ -1,0 +1,80 @@
+<jqassistant-rules xmlns="http://schema.jqassistant.org/rule/v2.2"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://schema.jqassistant.org/rule/v2.2 https://jqassistant.github.io/jqassistant/current/schema/jqassistant-rule-v2.2.xsd">
+
+    <group id="adr">
+        <includeConcept refId="adr:*"/>
+        <includeConstraint refId="adr-*"/>
+    </group>
+
+    <concept id="adr:document">
+        <description>ADR yaml documents files</description>
+        <cypher><![CDATA[
+            MATCH
+                (file:Yaml:File)
+                    -[HAS_DOCUMENT]->
+                (doc:Yaml:Document)
+                    -[HAS_MAP]->
+                (map:Yaml:Map)
+                    -[HAS_KEY]->
+                (key:Yaml:Key {name:'id'})
+                    -[HAS_VALUE]->
+                (id:Yaml:Value)
+            WHERE
+                file.fileName STARTS WITH '/adr-'
+            MERGE
+                (adr:Adr {adrId: id.value})
+            RETURN adr
+    ]]></cypher>
+    </concept>
+
+    <concept id="adr:matchingConstraint">
+        <requiresConcept refId="adr:document"/>
+        <description>Links ADRs with JQL Constraints which ensure the ADR</description>
+        <cypher><![CDATA[
+            match (adr:Adr)
+            match (e:Xml:Element {name: 'constraint'})-->(attr:Xml:Attribute {name: 'id'})
+            where attr.value STARTS WITH adr.adrId
+            merge (adr)-[r:ENSURED_BY]->(constraint:AdrConstraint {adrId: adr.adrId, id: attr.value})
+            return adr.adrId, type(r), constraint.id
+        ]]></cypher>
+    </concept>
+
+    <concept id="adr:constraintReport">
+        <requiresConcept refId="adr:document"/>
+        <description>List of all constraints for adrs</description>
+        <cypher><![CDATA[
+            call {
+                match (a:Adr)-[r:ENSURED_BY]->(c:AdrConstraint)
+                return a.adrId as adr, c.id as Constraints
+                UNION DISTINCT
+                match(unionAdr:Adr)
+                return unionAdr.adrId as adr, null as Constraints
+           }
+           return adr, collect(Constraints) as Constraints
+        ]]></cypher>
+    </concept>
+
+    <constraint id="adr-01">
+        <description>ADR yaml documents files</description>
+        <cypher><![CDATA[
+            MATCH
+                (file:Type)-->(adr:Adr)
+            RETURN file
+    ]]></cypher>
+    </constraint>
+
+    <constraint id="adr-01-hello">
+        <description>ADR yaml documents files</description>
+        <cypher><![CDATA[
+            MATCH
+                 (file:Type)-->(adr:Adr)
+            RETURN file
+    ]]></cypher>
+    </constraint>
+
+
+
+
+
+</jqassistant-rules>

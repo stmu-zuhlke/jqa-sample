@@ -1,0 +1,40 @@
+<jqassistant-rules xmlns="http://schema.jqassistant.org/rule/v2.2"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://schema.jqassistant.org/rule/v2.2 https://jqassistant.github.io/jqassistant/current/schema/jqassistant-rule-v2.2.xsd">
+
+    <group id="structure">
+        <includeConcept refId="structure:*"/>
+        <includeConstraint refId="structure:*"/>
+    </group>
+
+    <concept id="structure:ports-and-adapters">
+        <requiresConcept refId="commons:corePackage"/>
+        <requiresConcept refId="commons:infraPackage"/>
+        <description>Marks all interfaces in the core as ports</description>
+        <cypher><![CDATA[
+            MATCH
+                (adapter:Type)-[r:IMPLEMENTS]->(port:Interface:Core)
+            SET
+                port:Port,adapter:Adapter
+            CREATE
+                (adapter)-[:ADAPTER_OF]->(port)-[:PORT_OF]->(adapter)
+            RETURN
+                port.name AS Port, collect(adapter.name) AS Adapters
+        ]]>
+        </cypher>
+    </concept>
+
+    <constraint id="structure:adapterPackage">
+        <requiresConcept refId="structure:ports-and-adapters"/>
+        <description>Makes sure, that adapters are in the infra package</description>
+        <cypher><![CDATA[
+            MATCH
+                (a:Adapter)
+            WHERE NOT
+                a:Infra
+            RETURN
+                a as InvalidAdapter
+        ]]></cypher>
+    </constraint>
+
+</jqassistant-rules>

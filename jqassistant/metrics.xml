@@ -1,0 +1,26 @@
+<jqassistant-rules xmlns="http://schema.jqassistant.org/rule/v2.2"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://schema.jqassistant.org/rule/v2.2 https://jqassistant.github.io/jqassistant/current/schema/jqassistant-rule-v2.2.xsd">
+
+    <group id="metrics">
+        <includeConcept refId="metrics:*"/>
+    </group>
+
+    <concept id="metrics:MostChangedTypes">
+        <requiresConcept refId="commons:ConnectGitFilesAndTypes"/>
+        <description>Most changed Types</description>
+        <cypher><![CDATA[
+        MATCH
+            (commit:Git:Commit)-[:CONTAINS_CHANGE]->(:Git:Change)-[:MODIFIES]->(:Git:File)-[:CONTAINS]->(type:Type)
+        RETURN
+            type.fqn AS Type, count(commit) AS NumberOfCommits
+        ORDER BY
+            NumberOfCommits DESC
+        LIMIT
+            20
+    ]]></cypher>
+    </concept>
+
+
+
+</jqassistant-rules>

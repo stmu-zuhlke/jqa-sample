@@ -1,0 +1,11 @@
+id: adr-01
+title: My first ADR
+status: accepted
+last-change: 10.10.2024
+context: >
+  This is an ADR to test ADRs
+  Here is a bigger context to it.
+decision: >
+  We decided to be great
+  and even better
+consequences: None
