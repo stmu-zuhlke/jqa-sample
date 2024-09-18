@@ -17,6 +17,7 @@ import java.util.Set;
         havingValue = "mock",
         matchIfMissing = true
 )
+// Just a mock
 public class MockLocationPollingRegistry implements LocationPollingRegistry {
 
     private static final Set<Location> REGISTRY = new HashSet<>();
