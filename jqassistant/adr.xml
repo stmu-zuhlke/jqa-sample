@@ -8,22 +8,14 @@
     </group>
 
     <concept id="adr:document">
-        <description>ADR yaml documents files</description>
+        <description>ADR asciidoc documents files</description>
         <cypher><![CDATA[
             MATCH
-                (file:Yaml:File)
-                    -[HAS_DOCUMENT]->
-                (doc:Yaml:Document)
-                    -[HAS_MAP]->
-                (map:Yaml:Map)
-                    -[HAS_KEY]->
-                (key:Yaml:Key {name:'id'})
-                    -[HAS_VALUE]->
-                (id:Yaml:Value)
-            WHERE
-                file.fileName STARTS WITH '/adr-'
+                (f:Asciidoc:File)-->(b:Block)-->(t:Table)-->
+                (r:Row {rownumber:0})-->(c: Cell {colnumber: 1})
+            WHERE  f.fileName STARTS WITH '/adr-'
             MERGE
-                (adr:Adr {adrId: id.value})
+                (adr:Adr {adrId: c.text})
             RETURN adr
     ]]></cypher>
     </concept>

@@ -3,6 +3,9 @@ jqassistant:
     - group-id: de.kontext-e.jqassistant.plugin
       artifact-id: jqassistant.plugin.git
       version: ${jqassistant.git-plugin.version}
+    - group-id: de.kontext-e.jqassistant.plugin
+      artifact-id: jqassistant.plugin.asciidoc
+      version: ${jqassistant.asciidoc-plugin.version}
   maven:
     reuse-store: true
   scan:

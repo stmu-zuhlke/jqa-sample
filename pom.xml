@@ -24,7 +24,8 @@
 	<properties>
 		<java.version>22</java.version>
 		<jqassistant.version>2.4.0</jqassistant.version>
-		<jqassistant.git-plugin.version>1.12.0</jqassistant.git-plugin.version>
+        <jqassistant.git-plugin.version>1.12.0</jqassistant.git-plugin.version>
+        <jqassistant.asciidoc-plugin.version>2.1.0</jqassistant.asciidoc-plugin.version>
 		<asciidoctor.maven.plugin.version>3.0.0</asciidoctor.maven.plugin.version>
         <asciidoctorj.version>2.5.13</asciidoctorj.version>
         <asciidoctor-multipage.version>0.0.19</asciidoctor-multipage.version>

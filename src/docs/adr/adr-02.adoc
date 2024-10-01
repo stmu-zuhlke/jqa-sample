@@ -1,9 +1,24 @@
-= My second ADR
+= My 2nd ADR
 
-[,yaml]
-----
-include::adr-02.yaml[]
-----
+[cols="25%,~",frame=end, grid=rows, stripes=even]
+|===
+|ID | adr-02
+|Author| Bob Boo
+|Status| accepted
+|Last Change | 01.08.2024
+|===
+
+== Context
+This is yet another ADR
+let's see if this works
+
+== Decision
+We decided to be great and even better
+
+== Consequences
+We will be the best of the best
+
+== Verification Status
 
 include::jQAssistant:Summary[constraints="adr-02*"]
 

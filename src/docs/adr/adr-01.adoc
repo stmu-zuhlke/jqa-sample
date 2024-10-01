@@ -1,9 +1,23 @@
 = My first ADR
 
-[,yaml]
-----
-include::adr-01.yaml[]
-----
+[cols="25%,~",frame=end, grid=rows, stripes=even]
+|===
+|ID | adr-01
+|Author| John Doe
+|Status| accepted
+|Last Change | 01.07.2023
+|===
+
+== Context
+This is an ADR to test ADRs . Here is a bigger context to it.
+
+== Decision
+We decided to be great and even better
+
+== Consequences
+We will be the best of the best
+
+== Verification Status
 
 include::jQAssistant:Summary[constraints="adr-01*"]
 
