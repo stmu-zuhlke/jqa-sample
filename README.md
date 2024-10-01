@@ -2,6 +2,8 @@
 
 This is a sample project to show some concepts of jQAssistant.
 
+The created arc42 documentation can be found :rocket: [here](https://stmu-zuhlke.github.io/jqa-sample/) :rocket:.
+
 ## How to start
 You need Maven and Java 22
 then run
