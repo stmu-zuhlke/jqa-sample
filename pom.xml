@@ -28,6 +28,7 @@
 		<asciidoctor.maven.plugin.version>3.0.0</asciidoctor.maven.plugin.version>
         <asciidoctorj.version>2.5.13</asciidoctorj.version>
         <asciidoctor-multipage.version>0.0.19</asciidoctor-multipage.version>
+        <jqassistant.asciidoc.version>1.0.1</jqassistant.asciidoc.version>
         <jruby.version>9.4.6.0</jruby.version>
         <doc.outputDir>${project.build.directory}/docs/</doc.outputDir>
 	</properties>
@@ -165,7 +166,7 @@
                     <dependency>
                         <groupId>org.jqassistant.tooling.asciidoctorj</groupId>
                         <artifactId>jqassistant-asciidoctorj-extensions</artifactId>
-                        <version>1.0.1</version>
+                        <version>${jqassistant.asciidoc.version}</version>
                     </dependency>
                 </dependencies>
             </plugin>

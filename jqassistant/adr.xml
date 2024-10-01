@@ -42,6 +42,7 @@
 
     <concept id="adr:constraintReport">
         <requiresConcept refId="adr:document"/>
+        <requiresConcept refId="adr:matchingConstraint"/>
         <description>List of all constraints for adrs</description>
         <cypher><![CDATA[
             call {
@@ -56,7 +57,7 @@
     </concept>
 
     <constraint id="adr-01">
-        <description>ADR yaml documents files</description>
+        <description>Dummy contraint for ADR-01</description>
         <cypher><![CDATA[
             MATCH
                 (file:Type)-->(adr:Adr)
@@ -65,7 +66,7 @@
     </constraint>
 
     <constraint id="adr-01-hello">
-        <description>ADR yaml documents files</description>
+        <description>Another Dummy contraint for ADR-01</description>
         <cypher><![CDATA[
             MATCH
                  (file:Type)-->(adr:Adr)
